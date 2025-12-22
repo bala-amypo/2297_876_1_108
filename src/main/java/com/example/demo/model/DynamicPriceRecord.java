@@ -1,10 +1,17 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "dynamic_price_records")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class DynamicPriceRecord {
 
     @Id
@@ -25,6 +32,4 @@ public class DynamicPriceRecord {
     public void onCreate() {
         this.computedAt = LocalDateTime.now();
     }
-
-    // getters and setters
 }
