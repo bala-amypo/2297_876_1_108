@@ -10,7 +10,8 @@ public class DynamicPricingEngineServiceImpl implements DynamicPricingService {
 
     private final EventRecordRepository eventRepo;
 
-    public DynamicPricingServiceImpl(EventRecordRepository eventRepo) {
+    // Constructor name must match the class name
+    public DynamicPricingEngineServiceImpl(EventRecordRepository eventRepo) {
         this.eventRepo = eventRepo;
     }
 
