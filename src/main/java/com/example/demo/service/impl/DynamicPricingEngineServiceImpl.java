@@ -2,15 +2,15 @@ package com.example.demo.service.impl;
 
 import com.example.demo.model.EventRecord;
 import com.example.demo.repository.EventRecordRepository;
-import com.example.demo.service.DynamicPricingService;
+import com.example.demo.service.DynamicPricingEngineService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DynamicPricingServiceImpl implements DynamicPricingService {
+public class DynamicPricingEngineServiceImpl implements DynamicPricingEngineService {
 
     private final EventRecordRepository eventRepo;
 
-    public DynamicPricingServiceImpl(EventRecordRepository eventRepo) {
+    public DynamicPricingEngineServiceImpl(EventRecordRepository eventRepo) {
         this.eventRepo = eventRepo;
     }
 

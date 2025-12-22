@@ -1,5 +1,5 @@
 package com.example.demo.service;
 
-public interface DynamicPricingService {
+public interface DynamicPricingEngineService {
     double calculatePrice(Long eventId);
 }
