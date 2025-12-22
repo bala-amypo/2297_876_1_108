@@ -1,3 +1,8 @@
+package com.example.demo.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "seat_inventory_records")
 public class SeatInventoryRecord {
@@ -6,6 +11,7 @@ public class SeatInventoryRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Reference to EventRecord (FK handled logically)
     private Long eventId;
 
     private Integer totalSeats;
@@ -16,6 +22,8 @@ public class SeatInventoryRecord {
     @PrePersist
     @PreUpdate
     public void onUpdate() {
-        updatedAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
+
+    // getters and setters
 }
