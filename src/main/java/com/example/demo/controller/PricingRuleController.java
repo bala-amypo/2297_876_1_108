@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/pricing")
-public class PricingController {
+public class PricingRuleController {
 
     private final DynamicPricingService pricingService;
 
