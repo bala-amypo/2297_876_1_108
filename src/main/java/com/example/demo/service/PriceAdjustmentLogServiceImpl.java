@@ -4,7 +4,7 @@ import com.example.demo.model.PriceAdjustmentLog;
 
 import java.util.List;
 
-public interface PriceAdjustmentLogService {
+public interface PriceAdjustmentLogServiceImpl {
 
     PriceAdjustmentLog logAdjustment(PriceAdjustmentLog log);
 
