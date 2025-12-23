@@ -12,6 +12,7 @@ public class PricingRuleController {
 
     private final PricingRuleService pricingRuleService;
 
+    // ✅ Constructor name MUST match class name
     public PricingRuleController(PricingRuleService pricingRuleService) {
         this.pricingRuleService = pricingRuleService;
     }
