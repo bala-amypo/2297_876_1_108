@@ -1,20 +1,17 @@
 package com.example.demo.controller;
 
-import com.example.demo.service.DynamicPricingService;
+import com.example.demo.service.PricingRuleService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/pricing")
+@RequestMapping("/pricing-rules")
 public class PricingRuleController {
 
-    private final DynamicPricingService pricingService;
+    private final PricingRuleService pricingRuleService;
 
-    public PricingController(DynamicPricingService pricingService) {
-        this.pricingService = pricingService;
-    }
-
-    @GetMapping("/{eventId}")
-    public double getPrice(@PathVariable Long eventId) {
-        return pricingService.calculatePrice(eventId);
+    // ✅ CORRECT constructor
+    public PricingRuleController(PricingRuleService pricingRuleService) {
+        this.pricingRuleService = pricingRuleService;
     }
 }
+
