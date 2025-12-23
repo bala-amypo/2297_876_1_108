@@ -4,6 +4,14 @@ import com.example.demo.model.PricingRule;
 import java.util.List;
 
 public interface PricingRuleService {
-    PricingRule addRule(PricingRule rule);
+
+    PricingRule createRule(PricingRule rule);
+
+    PricingRule updateRule(Long id, PricingRule rule);
+
+    PricingRule getRuleById(Long id);
+
+    List<PricingRule> getActiveRules();
+
     List<PricingRule> getAllRules();
 }
