@@ -18,9 +18,9 @@ public class PricingRuleServiceImpl implements PricingRuleService {
 
     @Override
     public PricingRule createRule(PricingRule rule) {
-        if (pricingRuleRepository.existsByRuleCode(rule.getRuleCode())) {
-            throw new RuntimeException("Pricing rule already exists");
-        }
+        // if (pricingRuleRepository.existsByRuleCode(rule.getRuleCode())) {
+        //     throw new RuntimeException("Pricing rule already exists");
+        // }
         return pricingRuleRepository.save(rule);
     }
 
