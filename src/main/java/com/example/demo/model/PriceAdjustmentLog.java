@@ -1,30 +1,62 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "price_adjustment_logs")
 public class PriceAdjustmentLog {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    // Reference to EventRecord
     private Long eventId;
-
+    private String description;
     private Double oldPrice;
     private Double newPrice;
+    private LocalDateTime adjustmentTime;
 
-    private String reason;
-
-    private LocalDateTime changedAt;
-
-    @PrePersist
-    public void onCreate() {
-        this.changedAt = LocalDateTime.now();
+    // Getters and setters
+    public Long getId() {
+        return id;
     }
 
-    // getters and setters
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getOldPrice() {
+        return oldPrice;
+    }
+
+    public void setOldPrice(Double oldPrice) {
+        this.oldPrice = oldPrice;
+    }
+
+    public Double getNewPrice() {
+        return newPrice;
+    }
+
+    public void setNewPrice(Double newPrice) {
+        this.newPrice = newPrice;
+    }
+
+    public LocalDateTime getAdjustmentTime() {
+        return adjustmentTime;
+    }
+
+    public void setAdjustmentTime(LocalDateTime adjustmentTime) {
+        this.adjustmentTime = adjustmentTime;
+    }
 }
