@@ -1,12 +1,7 @@
-package com.example.demo;
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+class DemoApplicationTests {
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class DemoApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+    @Test
+    void contextLoads() {
     }
 }
