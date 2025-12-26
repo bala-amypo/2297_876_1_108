@@ -10,10 +10,3 @@ class DemoApplicationTests {
     void contextLoads() {
     }
 }
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-class DemoApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-}
