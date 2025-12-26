@@ -4,8 +4,8 @@ import com.example.demo.model.EventRecord;
 import com.example.demo.service.EventRecordService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -13,8 +13,12 @@ import java.util.List;
 @Tag(name = "Events", description = "Event management operations")
 public class EventController {
 
-    @Autowired
-    private EventRecordService eventService;
+    private final EventRecordService eventService;
+
+    // ✅ Constructor Injection (BEST PRACTICE)
+    public EventController(EventRecordService eventService) {
+        this.eventService = eventService;
+    }
 
     @PostMapping
     @Operation(summary = "Create new event")
@@ -36,7 +40,9 @@ public class EventController {
 
     @PutMapping("/{id}/status")
     @Operation(summary = "Update event status")
-    public EventRecord updateStatus(@PathVariable Long id, @RequestParam Boolean active) {
+    public EventRecord updateStatus(
+            @PathVariable Long id,
+            @RequestParam Boolean active) {
         return eventService.updateEventStatus(id, active);
     }
 }
