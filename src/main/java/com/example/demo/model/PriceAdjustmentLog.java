@@ -11,71 +11,28 @@ public class PriceAdjustmentLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private Long eventId;
-
-    @Column(length = 500)
-    private String description;
-
-    @Column(nullable = false)
     private Double oldPrice;
-
-    @Column(nullable = false)
     private Double newPrice;
 
-    @Column(nullable = false)
-    private LocalDateTime adjustmentTime;
+    private LocalDateTime changedAt;
 
-    // Constructors
-    public PriceAdjustmentLog() {
+    @PrePersist
+    public void prePersist() {
+        this.changedAt = LocalDateTime.now();
     }
 
-    // Getters & Setters
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getEventId() { return eventId; }
+    public void setEventId(Long eventId) { this.eventId = eventId; }
 
-    public Long getEventId() {
-        return eventId;
-    }
+    public Double getOldPrice() { return oldPrice; }
+    public void setOldPrice(Double oldPrice) { this.oldPrice = oldPrice; }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
-    }
+    public Double getNewPrice() { return newPrice; }
+    public void setNewPrice(Double newPrice) { this.newPrice = newPrice; }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Double getOldPrice() {
-        return oldPrice;
-    }
-
-    public void setOldPrice(Double oldPrice) {
-        this.oldPrice = oldPrice;
-    }
-
-    public Double getNewPrice() {
-        return newPrice;
-    }
-
-    public void setNewPrice(Double newPrice) {
-        this.newPrice = newPrice;
-    }
-
-    public LocalDateTime getAdjustmentTime() {
-        return adjustmentTime;
-    }
-
-    public void setAdjustmentTime(LocalDateTime adjustmentTime) {
-        this.adjustmentTime = adjustmentTime;
-    }
+    public LocalDateTime getChangedAt() { return changedAt; }
+    public void setChangedAt(LocalDateTime changedAt) { this.changedAt = changedAt; }
 }
