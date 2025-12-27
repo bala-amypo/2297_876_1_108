@@ -2,37 +2,32 @@ package com.example.demo.controller;
 
 import com.example.demo.model.PriceAdjustmentLog;
 import com.example.demo.service.PriceAdjustmentLogService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/price-adjustments")
+@RequestMapping("/api/price-adjustments")
 public class PriceAdjustmentLogController {
 
-    @Autowired
-    private PriceAdjustmentLogService logService;
+ private final PriceAdjustmentLogService service;
 
-    // Log a new adjustment
-    @PostMapping("/log")
-    public ResponseEntity<Void> logAdjustment(@RequestBody PriceAdjustmentLog log) {
-        logService.logAdjustment(log);  // Service returns void
-        return ResponseEntity.ok().build();  // Return 200 OK
-    }
+ public PriceAdjustmentLogController(PriceAdjustmentLogService service) {
+  this.service = service;
+ }
 
-    // Get adjustments for a specific event
-    @GetMapping("/event/{eventId}")
-    public ResponseEntity<List<PriceAdjustmentLog>> getAdjustmentsByEvent(@PathVariable Long eventId) {
-        List<PriceAdjustmentLog> logs = logService.getAdjustmentsByEvent(eventId);
-        return ResponseEntity.ok(logs);
-    }
+ @PostMapping
+ public PriceAdjustmentLog log(@RequestBody PriceAdjustmentLog log) {
+  return service.logAdjustment(log);
+ }
 
-    // Get all adjustments
-    @GetMapping("/all")
-    public ResponseEntity<List<PriceAdjustmentLog>> getAllAdjustments() {
-        List<PriceAdjustmentLog> logs = logService.getAllAdjustments();
-        return ResponseEntity.ok(logs);
-    }
+ @GetMapping("/event/{eventId}")
+ public List<PriceAdjustmentLog> getByEvent(@PathVariable Long eventId) {
+  return service.getAdjustmentsByEvent(eventId);
+ }
+
+ @GetMapping
+ public List<PriceAdjustmentLog> all() {
+  return service.getAllAdjustments();
+ }
 }

@@ -10,42 +10,35 @@ import java.util.List;
 @RequestMapping("/api/pricing-rules")
 public class PricingRuleController {
 
-    private final PricingRuleService pricingRuleService;
+ private final PricingRuleService service;
 
-    public PricingRuleController(PricingRuleService pricingRuleService) {
-        this.pricingRuleService = pricingRuleService;
-    }
+ public PricingRuleController(PricingRuleService service) {
+  this.service = service;
+ }
 
-    // 1️⃣ POST /api/pricing-rules
-    @PostMapping
-    public PricingRule createRule(@RequestBody PricingRule rule) {
-        return pricingRuleService.createRule(rule);
-    }
+ @PostMapping
+ public PricingRule create(@RequestBody PricingRule rule) {
+  return service.createRule(rule);
+ }
 
-    // 2️⃣ PUT /api/pricing-rules/{id}
-    @PutMapping("/{id}")
-    public PricingRule updateRule(
-            @PathVariable Long id,
-            @RequestBody PricingRule rule
-    ) {
-        return pricingRuleService.updateRule(id, rule);
-    }
+ @PutMapping("/{id}")
+ public PricingRule update(@PathVariable Long id, @RequestBody PricingRule rule) {
+  return service.updateRule(id, rule);
+ }
 
-    // 3️⃣ GET /api/pricing-rules/active
-    @GetMapping("/active")
-    public List<PricingRule> getActiveRules() {
-        return pricingRuleService.getActiveRules();
-    }
+ @GetMapping("/active")
+ public List<PricingRule> getActive() {
+  return service.getActiveRules();
+ }
 
-    // 4️⃣ GET /api/pricing-rules/{id}
-    @GetMapping("/{id}")
-    public PricingRule getRuleById(@PathVariable Long id) {
-        return pricingRuleService.getRuleById(id);
-    }
+ @GetMapping("/{id}")
+ public PricingRule getById(@PathVariable Long id) {
+  return service.getAllRules().stream().filter(r -> r.getId().equals(id))
+          .findFirst().orElseThrow();
+ }
 
-    // 5️⃣ GET /api/pricing-rules
-    @GetMapping
-    public List<PricingRule> getAllRules() {
-        return pricingRuleService.getAllRules();
-    }
+ @GetMapping
+ public List<PricingRule> getAll() {
+  return service.getAllRules();
+ }
 }
