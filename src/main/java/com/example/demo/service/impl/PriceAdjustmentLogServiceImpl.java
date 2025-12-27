@@ -1,32 +1,43 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.PriceAdjustmentLog;
+import com.example.demo.repository.PriceAdjustmentLogRepository;
 import com.example.demo.service.PriceAdjustmentLogService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PriceAdjustmentLogServiceImpl implements PriceAdjustmentLogService {
 
-    private final List<PriceAdjustmentLog> logs = new ArrayList<>();
+    private final PriceAdjustmentLogRepository logRepository;
 
-    @Override
-    public void logAdjustment(PriceAdjustmentLog log) {
-        logs.add(log);
+    public PriceAdjustmentLogServiceImpl(PriceAdjustmentLogRepository logRepository) {
+        this.logRepository = logRepository;
     }
 
     @Override
-    public List<PriceAdjustmentLog> getAdjustmentsByEvent(Long eventId) {
-        return logs.stream()
-                .filter(log -> log.getEventId().equals(eventId))
-                .collect(Collectors.toList());
+    public List<PriceAdjustmentLog> getLogsByEventId(Long eventId) {
+        return logRepository.findByEventId(eventId);
     }
 
     @Override
     public List<PriceAdjustmentLog> getAllAdjustments() {
-        return new ArrayList<>(logs);
+        return logRepository.findAll();
+    }
+
+    @Override
+    public PriceAdjustmentLog saveLog(PriceAdjustmentLog log) {
+        return logRepository.save(log);
+    }
+
+    @Override
+    public PriceAdjustmentLog logAdjustment(PriceAdjustmentLog log) {
+        return logRepository.save(log);
+    }
+
+    @Override
+    public List<PriceAdjustmentLog> getAdjustmentsByEvent(Long eventId) {
+        return logRepository.findByEventId(eventId);
     }
 }
